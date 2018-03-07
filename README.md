@@ -49,6 +49,46 @@ class Demo extends React.Component {
 }
 ```
 
+## Advanced
+
+You might want to customized such as `<div/>` as your final view, instead of `<img/>` tags
+
+you can use `image` prop to replace any React element as you wish!
+
+For example, using `styled-components`:
+
+
+```js
+import styled from 'styled-components';
+
+const PreviewImg = styled.div`
+  background-image: url(${props => props.src});
+  width: 100%;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
+
+class Demo extends React.Component {
+  ...
+
+  render() {
+    const {value} = this.props;
+    return (
+      <div>
+        <ImageLoader
+          src={value}
+          image={props => <PreviewImg {...props}/>} // change to your customized component
+          loading={() => <div>Loading...</div>}
+          error={() => <div>Error</div>}
+          />
+      </div>
+    );
+  }
+}
+```
+
+
 ## Props
 
 | Name         | Type    | Default | Description |
@@ -58,6 +98,7 @@ class Demo extends React.Component {
 | onError | (err: Event) => void | null | This function will be called when image is failed |
 | loading | () => React.Element<*> | null | Return a React element that will show when image is loading |
 | error | () => React.Element<*> | null | Return a React element that will show when image is crashed |
+| image | ({src: string}) => React.Element<*> | null | Final result will render to this customized React element, if you don't assign this props default image will render into `<img src={src}/>` |
 
 ## Start example server
 

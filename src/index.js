@@ -5,6 +5,7 @@ type Props = {
   src: string,
   onLoad?: (img: Image) => void,
   onError?: (err: Event) => void,
+  image?: ({src: string}) => React.Element<*>,
   loading?: () => React.Element<*>,
   error?: (err: Event) => React.Element<*>
 }
@@ -73,13 +74,15 @@ export default class ImageLoader extends React.Component<Props, State> {
   }
 
   render() {
-    const {loading, error} = this.props;
+    const {loading, error, image} = this.props;
     const {src, isLoading, isError, errMsg} = this.state;
 
     if (loading && isLoading) {
       return loading();
     } else if (error && isError && errMsg) {
       return error(errMsg);
+    } else if (src && image) {
+      return image({src});
     } else if (src) {
       return <img {...this.props} src={src}/>
     }

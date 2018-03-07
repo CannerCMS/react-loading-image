@@ -1,6 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import styled from 'styled-components';
 import ImageLoader from '../src';
+
+const PreviewImg = styled.div`
+  background-image: url(${props => props.src});
+  width: 100%;
+  height: 300px;
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
 
 class Demo extends React.Component {
   constructor(props) {
@@ -30,6 +39,7 @@ class Demo extends React.Component {
           {value && (
             <ImageLoader
               src={value}
+              image={props => <PreviewImg {...props}/>}
               loading={() => <div>Loading...</div>}
               error={() => <div>Error</div>}
               />
