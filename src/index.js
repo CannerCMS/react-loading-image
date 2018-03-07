@@ -1,49 +1,89 @@
 // @flow
-import React from 'react';
-import Spinner from './Spinner';
+import * as React from 'react';
 
-export default class ImageLoader extends React.Component {
-    constructor(props) {
-        super(props);
+type Props = {
+  src: string,
+  onLoad?: (img: Image) => void,
+  onError?: (err: Event) => void,
+  loading?: () => React.Element<*>,
+  error?: (err: Event) => React.Element<*>
+}
 
-        this.state = {
-            isLoading: true,
-            src: ''
-        }
+type State = {
+  isLoading: boolean,
+  isError: boolean,
+  src: ?string,
+  errMsg: ?any,
+}
+
+export default class ImageLoader extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    (this: any).reload = this.reload.bind(this);
+
+    this.state = {
+      isLoading: true,
+      isError: false,
+      src: null,
+      errMsg: null
+    }
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    this.reload(nextProps);
+  }
+
+  componentDidMount() {
+    this.reload(this.props);
+  }
+
+  reload(props: Props) {
+    // initialize
+    this.setState({
+      isLoading: true,
+      isError: false,
+      src: null,
+      errMsg: null
+    });
+
+    const image = new Image();
+    image.src = props.src;
+    image.onload = () => {
+      this.setState({
+        src: image.src,
+        isLoading: false,
+        isError: false,
+        errMsg: null
+      });
+      if (props.onLoad) {
+        props.onLoad(image);
+      }
+    };
+    image.onerror = (err) => {
+      this.setState({
+        src: null,
+        isLoading: false,
+        isError: true,
+        errMsg: err
+      });
+      if (props.onError) {
+        props.onError(err);
+      }
+    }
+  }
+
+  render() {
+    const {loading, error} = this.props;
+    const {src, isLoading, isError, errMsg} = this.state;
+
+    if (loading && isLoading) {
+      return loading();
+    } else if (error && isError && errMsg) {
+      return error(errMsg);
+    } else if (src) {
+      return <img {...this.props} src={src}/>
     }
 
-    componentDidMount() {
-        const image = new Image();
-        image.src = this.props.src;
-        image.onload = () => {
-            this.setState({
-                src: image.src,
-                isLoading: false
-            });
-            if (this.props.onLoad) {
-                this.props.onLoad(image);
-            }
-        };
-        image.onerror = (err) => {
-            this.setState({
-                src: '',
-                isLoading: false
-            });
-            if (this.props.onError) {
-                this.props.onError(err);
-            }
-        }
-    }
-
-    render() {
-        if (this.state.isLoading) {
-            return (
-                <Spinner src={this.props.spinnerSrc}/>
-            );
-        } else {
-            return (
-                <img className='ril--image' src={this.state.src} alt={this.props.alt} {...this.props}/>
-            );
-        }
-    }
+    return null;
+  }
 }
