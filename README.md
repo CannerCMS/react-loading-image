@@ -51,9 +51,7 @@ class Demo extends React.Component {
 
 ## Advanced
 
-You might want to customized such as `<div/>` as your final view, instead of `<img/>` tags
-
-you can use `image` prop to replace any React element as you wish!
+You might want to customized such as `<div/>` as your final view, instead of `<img/>` tags, you can use `image` prop to replace any React element as you wish!
 
 For example, using `styled-components`:
 
