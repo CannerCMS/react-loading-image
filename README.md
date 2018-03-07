@@ -1,4 +1,6 @@
 # react-loading-image [![NPM version][npm-image]][npm-url]  [![Dependency Status][daviddm-image]][daviddm-url]
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Canner/react-loading-image.svg)](https://greenkeeper.io/)
 > A react image loader component
 
 ## Installation
