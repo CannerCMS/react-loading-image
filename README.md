@@ -1,10 +1,10 @@
-# react-imgloader [![NPM version][npm-image]][npm-url]  [![Dependency Status][daviddm-image]][daviddm-url]
+# react-loading-image [![NPM version][npm-image]][npm-url]  [![Dependency Status][daviddm-image]][daviddm-url]
 > A react image loader component
 
 ## Installation
 
 ```sh
-$ npm install --save react-imgloader
+$ npm install --save react-loading-image
 ```
 
 ## Usage
@@ -76,9 +76,9 @@ npm run gh-pages
 MIT © [chilijung](github.com/chilijung)
 
 
-[npm-image]: https://badge.fury.io/js/react-imgloader.svg
-[npm-url]: https://npmjs.org/package/react-imgloader
-[travis-image]: https://travis-ci.org/Canner/react-imgloader.svg?branch=master
-[travis-url]: https://travis-ci.org/Canner/react-imgloader
-[daviddm-image]: https://david-dm.org/Canner/react-imgloader.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/Canner/react-imgloader
+[npm-image]: https://badge.fury.io/js/react-loading-image.svg
+[npm-url]: https://npmjs.org/package/react-loading-image
+[travis-image]: https://travis-ci.org/Canner/react-loading-image.svg?branch=master
+[travis-url]: https://travis-ci.org/Canner/react-loading-image
+[daviddm-image]: https://david-dm.org/Canner/react-loading-image.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/Canner/react-loading-image
