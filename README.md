@@ -73,7 +73,7 @@ npm run gh-pages
 
 ## License
 
-MIT © [chilijung](github.com/chilijung)
+MIT © [chilijung](www.github.com/chilijung)
 
 
 [npm-image]: https://badge.fury.io/js/react-loading-image.svg
