@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  entry: './docs/index.js',
+  entry: './_gh-pages/index.js',
   output: {
-    path: path.join(__dirname, 'docs/static'),
+    path: path.join(__dirname, '_gh-pages/static'),
     filename: 'bundle.js',
     libraryTarget: 'var'
   },
@@ -23,6 +23,17 @@ module.exports = {
         test: /\.js$/,
         use: 'babel',
         exclude: path.resolve(__dirname, "node_modules")
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          }
+        ]
       }
     ]
   }
