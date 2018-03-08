@@ -1,6 +1,9 @@
 # react-loading-image [![NPM version][npm-image]][npm-url]  [![Dependency Status][daviddm-image]][daviddm-url]
 > A react image loader component
 
+![preview](./docs/image-loader.gif)
+
+
 ## Installation
 
 ```sh

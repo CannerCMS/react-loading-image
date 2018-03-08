@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Input, Icon, Alert} from 'antd';
 import styled from 'styled-components';
 import ImageLoader from '../src';
+
+import "antd/dist/antd.css";
 
 const PreviewImg = styled.div`
   background-image: url(${props => props.src});
@@ -29,19 +32,28 @@ class Demo extends React.Component {
   render() {
     const {value} = this.state;
     return (
-      <div>
+      <div style={{padding: '20px'}}>
         <h1>Copy a image URL here</h1>
-        <input onChange={this.onChange}/>
-        <p>
-          value: {value}
-        </p>
-        <div>
+        <Input onChange={this.onChange} placeholder="Your image url here"/>
+
+        <div style={{marginTop: '10px'}}>
           {value && (
             <ImageLoader
               src={value}
               image={props => <PreviewImg {...props}/>}
-              loading={() => <div>Loading...</div>}
-              error={() => <div>Error</div>}
+              error={() => (
+                <Alert
+                  message="Please check if your image url is valid"
+                  type="error"
+                />
+              )}
+              loading={() => {
+                return (
+                  <div>
+                    <Icon type="loading" style={{ fontSize: 24 }} spin />
+                  </div>
+                );
+              }}
               />
           )}
         </div>
