@@ -99,7 +99,7 @@ class Demo extends React.Component {
 | onError | (err: Event) => void | null | This function will be called when image is failed |
 | loading | () => React.Element<*> | null | Return a React element that will show when image is loading |
 | error | () => React.Element<*> | null | Return a React element that will show when image is crashed |
-| image | ({src: string}) => React.Element<*> | null | Final result will render to this customized React element, if you don't assign this props default image will render into `<img src={src}/>` |
+| image | ({src: string, width: number, height: number}) => React.Element<*> | null | Final result will render to this customized React element, if you don't assign this props default image will render into `<img src={src} width={width} height={height}/>` |
 
 ## Start example server
 

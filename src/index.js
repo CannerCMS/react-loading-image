@@ -14,6 +14,8 @@ type State = {
   isLoading: boolean,
   isError: boolean,
   src: ?string,
+  width: ?number,
+  height: ?number,
   errMsg: ?any,
 }
 
@@ -26,6 +28,8 @@ export default class ImageLoader extends React.Component<Props, State> {
       isLoading: true,
       isError: false,
       src: null,
+      width: null,
+      height: null,
       errMsg: null
     }
   }
@@ -48,10 +52,13 @@ export default class ImageLoader extends React.Component<Props, State> {
     });
 
     const image = new Image();
+
     image.src = props.src;
     image.onload = () => {
       this.setState({
         src: image.src,
+        width: image.width,
+        height: image.height,
         isLoading: false,
         isError: false,
         errMsg: null
@@ -63,6 +70,8 @@ export default class ImageLoader extends React.Component<Props, State> {
     image.onerror = (err) => {
       this.setState({
         src: null,
+        width: null,
+        height: null,
         isLoading: false,
         isError: true,
         errMsg: err
@@ -75,16 +84,16 @@ export default class ImageLoader extends React.Component<Props, State> {
 
   render() {
     const {loading, error, image} = this.props;
-    const {src, isLoading, isError, errMsg} = this.state;
+    const {src, width, height, isLoading, isError, errMsg} = this.state;
 
     if (loading && isLoading) {
       return loading();
     } else if (error && isError && errMsg) {
       return error(errMsg);
     } else if (src && image) {
-      return image({src});
+      return image({src, width, height});
     } else if (src) {
-      return <img {...this.props} src={src}/>
+      return <img {...this.props} src={src} width={width} height={height}/>
     }
 
     return null;
