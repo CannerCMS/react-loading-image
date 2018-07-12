@@ -3,6 +3,8 @@ import * as React from 'react';
 
 type Props = {
   src: string,
+  style: any,
+  className?: string,
   onLoad?: (img: Image) => void,
   onError?: (err: Event) => void,
   image?: ({src: string}) => React.Element<*>,
@@ -20,18 +22,13 @@ type State = {
 }
 
 export default class ImageLoader extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    (this: any).reload = this.reload.bind(this);
-
-    this.state = {
-      isLoading: true,
-      isError: false,
-      src: null,
-      width: null,
-      height: null,
-      errMsg: null
-    }
+  state = {
+    isLoading: true,
+    isError: false,
+    src: null,
+    width: null,
+    height: null,
+    errMsg: null
   }
 
   componentWillReceiveProps(nextProps: Props) {
@@ -42,7 +39,7 @@ export default class ImageLoader extends React.Component<Props, State> {
     this.reload(this.props);
   }
 
-  reload(props: Props) {
+  reload = (props: Props) => {
     // initialize
     this.setState({
       isLoading: true,
@@ -83,7 +80,7 @@ export default class ImageLoader extends React.Component<Props, State> {
   }
 
   render() {
-    const {loading, error, image} = this.props;
+    const {loading, error, image, style, className} = this.props;
     const {src, width, height, isLoading, isError, errMsg} = this.state;
 
     if (loading && isLoading) {
@@ -93,7 +90,7 @@ export default class ImageLoader extends React.Component<Props, State> {
     } else if (src && image) {
       return image({src, width, height});
     } else if (src) {
-      return <img {...this.props} src={src} width={width} height={height}/>
+      return <img src={src} style={style} className={className} width={width} height={height}/>
     }
 
     return null;

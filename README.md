@@ -95,6 +95,8 @@ class Demo extends React.Component {
 | Name         | Type    | Default | Description |
 | ------------ | ------- | ------- | ----------- |
 | src | string | null | Image URL |
+| style | style Object | null | Pass style object to set image's style |
+| className | string | null | Set image's className |
 | onLoad | (img: Image) => void | null | This function will be called when image is loaded |
 | onError | (err: Event) => void | null | This function will be called when image is failed |
 | loading | () => React.Element<*> | null | Return a React element that will show when image is loading |
