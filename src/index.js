@@ -21,7 +21,7 @@ type State = {
   errMsg: ?any,
 }
 
-export default class ImageLoader extends React.Component<Props, State> {
+export default class ImageLoader extends React.PureComponent<Props, State> {
   state = {
     isLoading: true,
     isError: false,
