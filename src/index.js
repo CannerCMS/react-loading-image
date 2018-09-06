@@ -32,7 +32,9 @@ export default class ImageLoader extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    this.reload(nextProps);
+    // reload only when image src is changed.
+    if (this.props.src !== nextProps.src)
+      this.reload(nextProps);
   }
 
   componentDidMount() {
